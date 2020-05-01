@@ -8,13 +8,77 @@ package units
     input units.Temperature_degC Celsius "Celsius value";
     output SI.Temperature Kelvin "Kelvin value";
   algorithm
-    Kelvin := Celsius - Modelica.Constants.T_zero;
+    Kelvin := Celsius +273.15;
     annotation(
       Inline = true,
       Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}), graphics = {Text(extent = {{-20, 100}, {-100, 20}}, textString = "degC"), Text(extent = {{100, -20}, {20, -100}}, textString = "K")}));
   end from_degC;
 
  
+
+type Temperature_degF = Real (final quantity="ThermodynamicTemperature",final unit="degF");
+
+
+
+function from_degF "Convert from degFahrenheit to Kelvin"
+  extends Modelica.SIunits.Icons.Conversion;
+    import Modelica.SIunits.Conversions.*;
+    import SI = Modelica.SIunits;
+  input units.Temperature_degF Fahrenheit "Fahrenheit value";
+  output SI.Temperature Kelvin "Kelvin value";
+algorithm
+  Kelvin := (Fahrenheit - 32)*(5/9) + 273.15;
+  
+end from_degF;
+
+
+
+type Temperature_degRa = Real (final quantity="ThermodynamicTemperature",final unit="degRa");
+
+
+
+function from_degRa
+  extends Modelica.SIunits.Icons.Conversion;
+    import Modelica.SIunits.Conversions.*;
+    import SI = Modelica.SIunits;
+  input units.Temperature_degRa ra;
+  output SI.Temperature Kelvin;
+algorithm
+  Kelvin := ra/1.8;
+  
+end from_degRa;
+
+
+
+
+
+type Temperature_degRe = Real (final quantity="ThermodynamicTemperature",final unit="degRe");
+
+
+
+function from_degRe
+  extends Modelica.SIunits.Icons.Conversion;
+    import Modelica.SIunits.Conversions.*;
+    import SI = Modelica.SIunits;
+  input units.Temperature_degRe re;
+  output SI.Temperature Kelvin;
+algorithm
+  Kelvin := (re*1.25)+273.15;
+  
+end from_degRe;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   type mol_per_hr = Real(final quantity = "MolarFlowRate", final unit = "mol/h");
 
@@ -94,11 +158,6 @@ package units
   algorithm
     mol_p_s := kmol_p_d * 0.0115740740;
   end from_kmol_per_day;
-
-  model Pressure
-  equation
-
-  end Pressure;
   //pressure units
   
   
@@ -598,11 +657,337 @@ type ft3_per_h = Real(final quantity = "VolumeFlowRate", final unit = "ft3/h");
   end from_ft3_per_h;
   
   
+ type ft3_per_d = Real(final quantity = "VolumeFlowRate", final unit = "ft3/d");
+
+  function from_ft3_per_d
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.ft3_per_d ft3pd;
+    output SI.VolumeFlowRate m3ps;
+  algorithm
+    m3ps := ft3pd *3.2774128472E-7;
+  end from_ft3_per_d;
+
+
+ type gallonUS_per_s = Real(final quantity = "VolumeFlowRate", final unit = "gal(US)/s");
+
+  function from_gallonUS_per_s
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.gallonUS_per_s gaps;
+    output SI.VolumeFlowRate m3ps;
+  algorithm
+    m3ps := gaps *0.00378541;
+  end from_gallonUS_per_s;
+
+
+ type gallonUK_per_s = Real(final quantity = "VolumeFlowRate", final unit = "gal(UK)/s");
+
+  function from_gallonUK_per_s
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.gallonUK_per_s gaps;
+    output SI.VolumeFlowRate m3ps;
+  algorithm
+    m3ps := gaps *0.00454609029;
+  end from_gallonUK_per_s;
+
+//density
+
+type g_per_m3 = Real (final quantity="Density",final unit="g/m3");
+
+
+ function from_g_per_m3
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.g_per_m3 gpm;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 := gpm *0.001;
+  end from_g_per_m3;
+
+
+
+
+type g_per_cc = Real (final quantity="Density",final unit="g/cc");
+
+
+ function from_g_per_cc
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.g_per_cc gpcc;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 := gpcc *1000;
+  end from_g_per_cc;
+
+
+
+
+type kg_per_cc = Real (final quantity="Density",final unit="kg/cc");
+
+
+ function from_kg_per_cc
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.kg_per_cc kgpcc;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 := gpcc *1000000;
+  end from_kg_per_cc;
+
+
+
+type kg_per_l = Real (final quantity="Density",final unit="kg/l");
+
+
+ function from_kg_per_l
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.kg_per_l kgpl;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 := kgpl *1000;
+  end from_kg_per_l;
+
+
+type g_per_l = Real (final quantity="Density",final unit="g/l");
+
+
+ function from_g_per_l
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.g_per_l gpl;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 := gpl *1;
+  end from_g_per_l;
+
+
+type mg_per_l = Real (final quantity="Density",final unit="mg/l");
+
+
+ function from_mg_per_l
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.mg_per_l mgpl;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 := mgpl *0.001;
+  end from_mg_per_l;
+
+
+type lb_per_in3 = Real (final quantity="Density",final unit="lb/in3");
+
+
+ function from_lb_per_in3
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.lb_per_in3 lbpi;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 :=lbpi *27679.904710191;
+  end from_lb_per_in3;
+
+
+type lb_per_ft3 = Real (final quantity="Density",final unit="lb/ft3");
+
+
+ function from_lb_per_ft3
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.lb_per_ft3 lbpf3;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 :=lbpf3 * 16.018463376;
+  end from_lb_per_ft3;
   
+  
+  
+type lb_per_gallon_UK = Real (final quantity="Density",final unit="lb/gal(UK)");
+
+
+ function from_lb_per_gallon_UK
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.lb_per_gallon_UK lbpg;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 :=lbpg * 99.776372663;
+  end from_lb_per_gallon_UK;
+  
+  
+  
+  
+type lb_per_gallon_US = Real (final quantity="Density",final unit="lb/gal(US)");
+
+
+ function from_lb_per_gallon_US
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.lb_per_gallon_US lbpg;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 :=lbpg * 119.826427318;
+  end from_lb_per_gallon_US;
+  
+  
+  
+  
+type ounce_per_gallon_UK = Real (final quantity="Density",final unit="oz/gal(UK)");
+
+
+ function from_ounce_per_gallon_UK
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.ounce_per_gallon_UK ozpg;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 :=ozpg * 6.236023291;
+  end from_ounce_per_gallon_UK;
 
 
 
+  type ounce_per_gallon_US = Real (final quantity="Density",final unit="oz/gal(US)");
 
 
+ function from_ounce_per_gallon_US
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.ounce_per_gallon_US ozpg;
+    output SI.VolumeFlowRate kgpm3;
+  algorithm
+   kgpm3 :=ozpg * 7.489151707;
+  end from_ounce_per_gallon_US;
+  
+ //molar_specific_enthalpy
+ 
+
+type cal_per_mol = Real (final quantity="MolarEnergy", final unit="cal/mol");
+
+
+
+function from_cal_per_mol
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.cal_per_mol cpm;
+    output SI.MolarEnergy jpm;
+  algorithm
+   jpm:=cpm* 4.1868;
+  end from_cal_per_mol;
+  
+  
+  type BTU_per_mol = Real (final quantity="MolarEnergy", final unit="BTU/mol");
+
+
+
+function from_BTU_per_mol
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.BTU_per_mol bpm;
+    output SI.MolarEnergy jpm;
+  algorithm
+   jpm:=bpm* 1055.06;
+  end from_BTU_per_mol;
+  
+//molar_spcific_entropy
+
+type Kcal_per_molKelvin = Real (final quantity="MolarEntropy", final unit="Kcal/Kmol.K");
+
+function from_Kcal_per_molKelvin
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.Kcal_per_molKelvin cpmk;
+    output SI.MolarEnergy jpmk;
+  algorithm
+   jpmk:=cpmk* 4.1868;
+  end from_Kcal_per_molKelvin;
+  
+//specfic enthalpy
+
+  type BTU_per_lb = Real (final quantity="SpecificEnergy", final unit="BTU/lb");
+
+
+
+function from_BTU_per_lb
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.BTU_per_lb bpl;
+    output SI.MolarEnergy kjpkg;
+  algorithm
+   kjpkg:=bpl* 2.324444623E-3;
+  end from_BTU_per_lb;
+  
+  
+ type cal_per_g = Real (final quantity="SpecificEnergy", final unit="cal/g");
+
+
+
+function from_cal_per_g
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.cal_per_g cpg;
+    output SI.MolarEnergy kjpkg;
+  algorithm
+   kjpkg:=cpg* 4.487E-3;
+  end from_cal_per_g;
+   
+   
+   type kcal_per_kg = Real (final quantity="SpecificEnergy", final unit="kcal/kg");
+   
+   
+function from_kcal_per_kg
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.kcal_per_kg kcpkg;
+    output SI.MolarEnergy kjpkg;
+  algorithm
+   kjpkg:=kcpkg* 4.487E-3;
+  end from_kcal_per_kg;  
+  
+  //molar entropy
+  
+type cal_per_gKelvin = Real (final quantity="SpecificEntropy", final unit="cal/g.K");
+
+
+function from_cal_per_gKelvin
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.cal_per_gKelvin cpgk;
+    output SI.MolarEnergy kjpkg;
+  algorithm
+   kjpkg:=cpgk* 4.487E-3;
+  end from_cal_per_gKelvin;  
+  
+  
+  
+  type BTU_per_lb_F = Real (final quantity="SpecificEntropy", final unit="BTU/lb.F");
+
+
+
+function from_BTU_per_lb_F
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.BTU_per_lb_F bpl;
+    output SI.MolarEnergy kjpkg;
+  algorithm
+   kjpkg:=bpl*  4.487E-3;
+  end from_BTU_per_lb_F;
+  
+   
+ type BTU_per_lb_R = Real (final quantity="SpecificEntropy", final unit="BTU/lb.R");
+
+
+
+function from_BTU_per_lb_R
+    extends Modelica.SIunits.Icons.Conversion;
+    import SI = Modelica.SIunits;
+    input units.BTU_per_lb_R bpl;
+    output SI.MolarEnergy kjpkg;
+  algorithm
+   kjpkg:=bpl*  4.487E-3;
+  end from_BTU_per_lb_R;
+   
+  
 
 end units;
