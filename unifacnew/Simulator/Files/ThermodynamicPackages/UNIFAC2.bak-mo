@@ -1,0 +1,36 @@
+model UNIFAC2
+   //new varibles
+   Real gma_c[Nc], gmabubl_c[Nc], gmadew_c[Nc];
+  Real Cpres_p[3], Hres_p[3], Sres_p[3];
+   Real K_c[Nc];
+   Real Pvap_c[Nc];
+   Real philiqbubl_c[Nc], phivapdew_c[Nc];
+   ///
+   // Real Psat[Nc];
+    //Real gamma[Nc];
+    //Real K[Nc];
+    //Fugacity coefficient  at the Bubble and Dew Points
+   // Real liqfugcoeff_bubl[Nc], vapfugcoeff_dew[Nc];
+    
+    //Excess Energy Properties
+    
+   // Real resMolSpHeat[3], resMolEnth[3], resMolEntr[3];
+    //Activity Coefficient at the Bubble and Dew Points
+    //Real gammaBubl[Nc], gammaDew[Nc](each start = 1.5);
+equation
+  Cpres_p = zeros(3);
+   Hres_p = zeros(3);
+  Sres_p= zeros(3);
+  for i in 1:Nc loop
+    Pvap_c[i] = Simulator.Files.ThermodynamicFunctions.Psat(C[i].VP, T);
+   // Psat[i] = Simulator.Files.Thermodynamic_Functions.Psat(comp[i].VP[:], T);
+  end for;
+  for i in 1:Nc loop
+   philiqbubl_c[i] = 1;
+    phivapdew_c[i] = 1;
+  end for;
+    (gma_c,gmabubl_c, gmadew_c)=UNIFAC_M(Nc, C.UNIFAC_SubGroup, Pvap_c, T, P, x_pc, Pdew);
+    for i in 1:Nc loop
+      K_c[i] = gma_c[i] * Pvap_c[i] / P;
+    end for;
+end UNIFAC2;
