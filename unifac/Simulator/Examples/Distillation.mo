@@ -4,21 +4,21 @@ package Distillation
   extends Modelica.Icons.ExamplesPackage;
   model Condenser
     extends Simulator.UnitOperations.DistillationColumn.Cond;
-    extends Simulator.Files.ThermodynamicPackages.RaoultsLaw;
+      extends peng.ss;
   annotation(
       Documentation(info = "<html><head></head><body><span style=\"font-size: 12px;\">This is a non-executable model is created inside the package Distillation to extend the&nbsp;</span><a href=\"modelica://Simulator.UnitOperations.DistillationColumn.Cond\">Condenser</a><span style=\"font-size: 12px;\">&nbsp;model along with the necessary property method from&nbsp;</span>ThermodynamicPackages<span style=\"font-size: 12px;\">&nbsp;which is&nbsp;</span><a href=\"modelica://Simulator.Files.ThermodynamicPackages.RaoultsLaw\">RaoultsLaw</a><span style=\"font-size: 12px;\">&nbsp;in this case.</span><div><span style=\"font-size: 12px;\"><br></span></div><div>It will be instantiated in the&nbsp;<a href=\"modelica://Simulator.Examples.Distillation.DistColumn\">DistColumn</a>&nbsp;model to create a complete distillation column model which will be instantiated in an executable model.</div></body></html>"));
   end Condenser;
 
   model Tray
     extends Simulator.UnitOperations.DistillationColumn.DistTray;
-    extends Simulator.Files.ThermodynamicPackages.RaoultsLaw;
+     extends peng.ss;
   annotation(
       Documentation(info = "<html><head></head><body><span style=\"font-size: 12px;\">This is a non-executable model is created inside the package Distillation to extend the&nbsp;</span><a href=\"modelica://Simulator.UnitOperations.DistillationColumn.DistTray\">Tray</a><span style=\"font-size: 12px;\">&nbsp;model along with the necessary property method from&nbsp;</span>ThermodynamicPackages<span style=\"font-size: 12px;\">&nbsp;which is&nbsp;</span><a href=\"modelica://Simulator.Files.ThermodynamicPackages.RaoultsLaw\">RaoultsLaw</a><span style=\"font-size: 12px;\">&nbsp;in this case.</span><div><span style=\"font-size: 12px;\"><br></span></div><div>It will be instantiated in the&nbsp;<a href=\"modelica://Simulator.Examples.Distillation.DistColumn\">DistColumn</a>&nbsp;model to create a complete distillation column model which will be instantiated in an executable model.</div></body></html>"));
   end Tray;
 
   model Reboiler
     extends Simulator.UnitOperations.DistillationColumn.Reb;
-    extends Simulator.Files.ThermodynamicPackages.RaoultsLaw;
+    extends peng.ss;
   annotation(
       Documentation(info = "<html><head></head><body><span style=\"font-size: 12px;\">This is a non-executable model is created inside the package Distillation to extend the&nbsp;</span><a href=\"modelica://Simulator.UnitOperations.DistillationColumn.Reb\">Reboiler</a><span style=\"font-size: 12px;\">&nbsp;model along with the necessary property method from&nbsp;</span>ThermodynamicPackages<span style=\"font-size: 12px;\">&nbsp;which is&nbsp;</span><a href=\"modelica://Simulator.Files.ThermodynamicPackages.RaoultsLaw\">RaoultsLaw</a><span style=\"font-size: 12px;\">&nbsp;in this case.</span><div><span style=\"font-size: 12px;\"><br></span></div><div>It will be instantiated in the&nbsp;<a href=\"modelica://Simulator.Examples.Distillation.DistColumn\">DistColumn</a>&nbsp;model to create a complete distillation column model which will be instantiated in an executable model.</div></body></html>"));
   end Reboiler;
@@ -34,7 +34,7 @@ package Distillation
 
   model ms
     extends Simulator.Streams.MaterialStream;
-    extends Simulator.Files.ThermodynamicPackages.RaoultsLaw;
+     extends  peng.ss;
   annotation(
       Documentation(info = "<html><head></head><body><span style=\"font-size: 12px;\">This is a non-executable model is created inside the package Distillation to extend the&nbsp;</span><a href=\"modelica://Simulator.Streams.MaterialStream\">MaterialStream</a><span style=\"font-size: 12px;\">&nbsp;model along with the necessary property method from&nbsp;</span>ThermodynamicPackages<span style=\"font-size: 12px;\">&nbsp;which is&nbsp;</span><a href=\"modelica://Simulator.Files.ThermodynamicPackages.RaoultsLaw\">RaoultsLaw</a><span style=\"font-size: 12px;\">&nbsp;in this case.</span><div><span style=\"font-size: 12px;\"><br></span></div><div>It will be instantiated in the&nbsp;<a href=\"modelica://Simulator.Examples.Distillation.Test\">Test</a>,&nbsp;<a href=\"modelica://Simulator.Examples.Distillation.Test2\">Test2</a>,&nbsp;<a href=\"modelica://Simulator.Examples.Distillation.Test3\">Test3</a>,<a href=\"modelica://Simulator.Examples.Distillation.Test4\">Test4</a>,&nbsp;<a href=\"modelica://Simulator.Examples.Distillation.multiFeedTest\">multiFeedTest</a>&nbsp;models to create the required number of instances of the material stream model.</div></body></html>"));
   end ms;

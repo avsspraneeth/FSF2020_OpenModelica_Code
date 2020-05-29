@@ -105,12 +105,12 @@ package MaterialStream
     parameter data.Ethanol eth;
     parameter data.Water wat;
     extends Simulator.Streams.MaterialStream(Nc = 2, C = {eth, wat}, Pbubl(start = 101325), Pdew(start = 101325), x_pc(each start = 0.33), xvap(start = 0.68));
-    extends Simulator.Files.ThermodynamicPackages.UNIQUAC;
+    extends Simulator.Files.ThermodynamicPackages.UNIFACnew.UNIFAC2;
   equation
     x_pc[1, :] = {0.5, 0.5};
     F_p[1] = 50;
     P = 101325;
-    T = 354;
+    T = 298;
   annotation(
       Documentation(info = "<html><head></head><body><span style=\"font-size: 12px;\">This is an executable standalone model to simualate the Material Stream example where all the components are defined, material stream specifications are declared.&nbsp;</span><a href=\"modelica://Simulator.Streams.MaterialStream\" style=\"font-size: 12px;\">MaterialStream</a><span style=\"font-size: 12px;\">&nbsp;model from the Streams package has been instantiated here.</span><div><br></div><div><b style=\"font-size: 12px;\">Component System:</b><span style=\"font-size: 12px;\">&nbsp;Ethanol, Water</span><div style=\"font-size: 12px;\"><b>Thermodynamics:</b>&nbsp;UNIQUAC</div><div style=\"font-size: 12px;\"><br></div><div style=\"font-size: 12px;\">This material stream is simulated using TP flash and UNIQUAC property package. In other words, Temperature and Pressure conditions are defined along with molar flow rate and mole fraction of the components.</div><div><span style=\"font-size: 12px;\"><br></span></div><div><div style=\"font-size: 12px;\"><b>Material Stream Information</b></div><div style=\"font-size: 12px;\"><br></div><div style=\"font-size: 12px;\"><b>Molar Flow Rate:</b>&nbsp;50 mol/s</div><div style=\"font-size: 12px;\"><b>Mole Fraction (Ethanol):</b>&nbsp;0.5</div><div style=\"font-size: 12px;\"><b>Mole Fraction (Water):</b> 0.5</div><div style=\"font-size: 12px;\"><b>Temperature:</b>&nbsp;354 K</div></div></div><div style=\"font-size: 12px;\"><b>Pressure:</b> 101325 Pa</div></body></html>"));
       end UNIQUAC;

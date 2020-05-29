@@ -237,6 +237,8 @@ package UNIFACnew
         gamma[i] := 1;
       end if;
     end for;
+    
+    
     for i in 1:NOC loop
       J_bubl[i] := r[i] / sum(r[:] .* X[1, :]);
       L_bubl[i] := q[i] / sum(q[:] .* X[1, :]);
